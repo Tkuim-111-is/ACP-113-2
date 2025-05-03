@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- 註解用GPT生的，其他都是淚水與汗水 -->
+<!-- 定義 HTML 根元素與命名空間 -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <!-- 頁面標題 -->
+        <title>G6_02</title>
+    </h:head>
+
+    <h:body>
+        <!-- 建立一個 JSF 表單，讓使用者輸入資料與觸發後端邏輯 -->
+        <h:form>
+
+            <!-- 建立一個兩欄的網格布局，顯示輸入框與按鈕 -->
+            <h:panelGrid columns="2">
+                <!-- 數字1的標籤 -->
+                <h:outputText value="數1"/>
+
+                <!-- 數字1的輸入框，綁定到 Bean.number1 -->
+                <h:inputText id="number1" value="#{Bean.number1}"/>
+
+                <!-- 數字2的標籤 -->
+                <h:outputText value="數2"/>
+
+                <!-- 數字2的輸入框，綁定到 Bean.number2 -->
+                <h:inputText id="number2" value="#{Bean.number2}"/>
+
+                <!-- 提交按鈕，當點擊時會呼叫後端 Bean 的 subtract() 方法 -->
+                <h:commandButton value="相減" action="#{Bean.subtract()}"/>
+            </h:panelGrid>
+        </h:form>
+
+        <!-- 顯示後端處理完後的訊息 (例如：JSON 字串或錯誤訊息) -->
+        <h:outputText value="#{Bean.message}"/>
+    </h:body>
+</html>
