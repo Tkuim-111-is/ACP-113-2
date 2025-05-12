@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>HW2_411630014</title>
+    </h:head>
+    <h:body>
+        <h:panelGrid columns="1">
+            <h:outputText value="loggedIn: #{Bean.loggedIn}"/>
+            <h:outputText value="#{Bean.resultMessage}"/>
+        </h:panelGrid>
+        <h:form>
+            <h:panelGrid columns="1">
+                <h:outputText value="用戶名稱"/>
+                <h:inputText id="username"
+                             required="true"
+                             requiredMessage="請輸入用戶名稱"
+                             value="#{Bean.username}"/>
+                <h:outputText value="密碼"/>
+                <h:inputSecret  id="password"
+                             required="true"
+                             requiredMessage="請輸入密碼"
+                             value="#{Bean.password}"/>
+            </h:panelGrid>
+            <h:panelGrid columns="3">
+                <h:commandButton value="登入"
+                                 action="#{Bean.signIn()}"/>
+                <h:commandButton value="登出"
+                                 action="#{Bean.signOut()}"
+                                 immediate="true"/>
+                <h:commandButton value="註冊"
+                                 action="#{Bean.signUp()}"/>
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>
