@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>G4_02</title>
+    </h:head>
+   <h:body>
+        <h:form>
+            <h2>住址簿</h2>
+            <h:outputLabel for="lastName" value="姓: " />
+            <h:inputText id="lastName" value="#{bean.lastName}" /><br/>
+            
+            <h:outputLabel for="firstName" value="名: " />
+            <h:inputText id="firstName" value="#{bean.firstName}" /><br/>
+            
+            <h:outputLabel for="email" value="電子郵件: " />
+            <h:inputText id="email" value="#{bean.email}" /><br/>
+            
+            <h:outputLabel for="phoneNumber" value="電話號碼: " />
+            <h:inputText id="phoneNumber" value="#{bean.phoneNumber}" /><br/>
+
+            <h:commandButton value="瀏覽下一筆記錄" action="#{bean.nextAddress()}" />
+            <h:commandButton value="瀏覽上一筆記錄" action="#{bean.previousAddress()}" />
+            <h:commandButton value="新增紀錄" action="#{bean.newAddress()}" />
+            <h:commandButton value="清除欄位值" action="#{bean.clearFields()}" />
+            <h:commandButton value="刪除記錄" action="#{bean.delete()}" />
+            <h:commandButton value="修改記錄" action="#{bean.revise()}" />
+            
+            <h:outputLabel for="lastName" value="#{bean.status}" />
+            <br/><br/>
+
+            <h2>住址簿</h2>
+            <h:dataTable value="#{bean.addressList}" var="address">
+                <h:column>
+                    <f:facet name="header">姓</f:facet>
+                    #{address.LASTNAME}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">名</f:facet>
+                    #{address.FIRSTNAME}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">電子郵件</f:facet>
+                    #{address.EMAIL}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">電話號碼</f:facet>
+                    #{address.PHONENUMBER}
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </h:body>
+</html>
+
