@@ -1,0 +1,36 @@
+Tue Apr 15 10:20:05 GMT+08:00 2025 : Apache Derby 網路伺服器 - 10.10.2.0 - (1582446) 已啟動，並且準備接受連接埠 1527 上的連線
+----------------------------------------------------------------
+Tue Apr 15 10:20:05 GMT+08:00 2025：
+ 正在使用類別載入器 jdk.internal.loader.ClassLoaders$AppClassLoader@6bc7c054 啟動資料庫
+目錄 D:\WorkSpace\GitHub\113-2-school-note\ADVANCED COMPUTER PROGRAMMING\G3_02\Derby\G5_02 中的 Derby 版本 The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446) 實例 a816c00e-0196-373f-1af5-ffffca7fd865
+載入自 file:/C:/Users/a3118/GlassFish_Server/javadb/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=23.0.2+7-58
+user.dir=C:\Users\a3118\GlassFish_Server\javadb
+os.name=Windows 11
+os.arch=amd64
+os.version=10.0
+derby.system.home=D:\WorkSpace\GitHub\113-2-school-note\ADVANCED COMPUTER PROGRAMMING\G3_02\Derby
+已啟動「資料庫類別載入器」- derby.database.classpath= ''
+----------------------------------------------------------------
+Tue Apr 15 10:57:34 GMT+08:00 2025：
+ 正在使用類別載入器 jdk.internal.loader.ClassLoaders$AppClassLoader@6bc7c054 啟動資料庫
+目錄 D:\WorkSpace\GitHub\113-2-school-note\ADVANCED COMPUTER PROGRAMMING\G3_02\Derby\HW3_411630014 中的 Derby 版本 The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446) 實例 ea5bc046-0196-373f-1af5-ffffca7fd865
+載入自 file:/C:/Users/a3118/GlassFish_Server/javadb/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=23.0.2+7-58
+user.dir=C:\Users\a3118\GlassFish_Server\javadb
+os.name=Windows 11
+os.arch=amd64
+os.version=10.0
+derby.system.home=D:\WorkSpace\GitHub\113-2-school-note\ADVANCED COMPUTER PROGRAMMING\G3_02\Derby
+已啟動「資料庫類別載入器」- derby.database.classpath= ''
+----------------------------------------------------------------
+Tue Apr 15 21:57:42 GMT+08:00 2025：正在關閉 Derby 引擎
+----------------------------------------------------------------
+Tue Apr 15 21:57:42 GMT+08:00 2025：
+正在使用類別載入器 jdk.internal.loader.ClassLoaders$AppClassLoader@6bc7c054 關閉資料庫目錄 D:\WorkSpace\GitHub\113-2-school-note\ADVANCED COMPUTER PROGRAMMING\G3_02\Derby\HW3_411630014 上的實例 ea5bc046-0196-373f-1af5-ffffca7fd865
+----------------------------------------------------------------
+Tue Apr 15 21:57:42 GMT+08:00 2025：
+正在使用類別載入器 jdk.internal.loader.ClassLoaders$AppClassLoader@6bc7c054 關閉資料庫目錄 D:\WorkSpace\GitHub\113-2-school-note\ADVANCED COMPUTER PROGRAMMING\G3_02\Derby\G5_02 上的實例 a816c00e-0196-373f-1af5-ffffca7fd865
+----------------------------------------------------------------
