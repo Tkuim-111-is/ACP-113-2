@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>HW3</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h2>購物車</h2>
+
+            <h:outputLabel for="memberID" value="選擇會員: " />
+            <h:selectOneMenu id="memberID" value="#{bean.memberID}">
+                <f:selectItem itemLabel="請選擇會員名" itemValue="" />
+                <f:selectItem itemLabel="周杰倫" itemValue="1" />
+                <f:selectItem itemLabel="孫燕姿" itemValue="2" />
+                <f:selectItem itemLabel="林俊傑" itemValue="3" />
+                <f:selectItem itemLabel="蔡依林" itemValue="4" />
+                <f:selectItem itemLabel="劉德華" itemValue="5" />
+            </h:selectOneMenu>
+
+            <br/>
+            
+            <h:outputLabel for="titleISBN" value="選擇要購買的書: " />
+            <h:selectOneMenu id="titleISBN" value="#{bean.titleISBN}">
+                <f:selectItem itemLabel="請選擇要買的書名" itemValue="" />
+                <f:selectItem itemLabel="Internet &amp; World Wide Web How to Program" itemValue="132151006" />
+                <f:selectItem itemLabel="Java How to Program" itemValue="133807800" />
+                <f:selectItem itemLabel="Java How to Program, Late Objects Version" itemValue="132575655" />
+                <f:selectItem itemLabel="'C How to Program" itemValue="013299044X" />
+                <f:selectItem itemLabel="C++ How to Program" itemValue="133378713" />
+                <f:selectItem itemLabel="Android How to Program" itemValue="133764036" />
+            </h:selectOneMenu>
+            
+
+            <h:commandButton value="加入購物車" action="#{bean.add}" />
+
+            <br/>
+            <h:outputLabel for="status" value="#{bean.status}" />
+            <br/>
+            <h2>購物清單</h2>
+            <h:dataTable value="#{bean.shoppingCart}" var="shoppingcart">
+                <h:column>
+                    <f:facet name="header">購買者編號</f:facet>
+                    #{shoppingcart.member_id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">姓氏</f:facet>
+                    #{shoppingcart.last_name}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">名字</f:facet>
+                    #{shoppingcart.first_name}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">書籍編號</f:facet>
+                    #{shoppingcart.ISBN}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">書名</f:facet>
+                    #{shoppingcart.title}
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </h:body>
+</html>
+
