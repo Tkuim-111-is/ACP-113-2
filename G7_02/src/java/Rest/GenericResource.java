@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/WebServices/GenericResource.java to edit this template
- */
 package Rest;
 
 import com.google.gson.Gson;
@@ -29,16 +25,15 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import Rest.Address;
 
-
 @Path("generic")
 public class GenericResource {
     
-    @Resource(lookup = "java:global/jdbc/addressDB")
+    @Resource(lookup = "java:global/jdbc/G7_02")
     
     private Connection getConnection() throws Exception {
-        String url = "jdbc:derby://localhost:1527/addressDB"; // 你的 DB 名稱
-        String user = "meowwu";
-        String password = "meowwu";
+        String url = "jdbc:derby://localhost:1527/G7_02"; // 你的 DB 名稱
+        String user = "G7_02";
+        String password = "G7_02";
         Class.forName("org.apache.derby.jdbc.ClientDriver");
         return DriverManager.getConnection(url, user, password);
     }
@@ -74,7 +69,7 @@ public class GenericResource {
     
     @GET
     @Path("{addressid}")
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces("application/json")
     public String getJson(@PathParam("addressid") int addressid) throws SQLException, Exception {
         Connection connection = getConnection();
         try {
@@ -94,7 +89,7 @@ public class GenericResource {
                 bean.setEmail(rowSet.getString("email"));
                 bean.setPhonenumber(rowSet.getString("phonenumber"));
             }else {
-                System.out.println("❗查無資料");
+                System.out.println("查無資料");
             }
 
             // 將 bean 物件轉成 JSON 字串並回傳
@@ -106,19 +101,19 @@ public class GenericResource {
     }
     
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes("application/json")
+    @Produces("application/json")
     public String addJson(Address input) throws SQLException, Exception {
         Connection conn = getConnection();
         try{
             PreparedStatement ps = conn.prepareStatement(
-                    "insert into addressesemail(firstname, lastname, email, phonenumber) values(?,?,?,?)",
+                    "insert into ADDRESSESEMAIL(firstname, lastname, email, phonenumber) values(?,?,?,?)",
                     PreparedStatement.RETURN_GENERATED_KEYS
             );
-            ps.setString(1, input.firstname);
-            ps.setString(2, input.lastname);
-            ps.setString(3, input.email);
-            ps.setString(4, input.phonenumber);
+            ps.setString(0, input.firstname);
+            ps.setString(1, input.lastname);
+            ps.setString(2, input.email);
+            ps.setString(3, input.phonenumber);
             
             int result = ps.executeUpdate();
             int addressid = 0;
