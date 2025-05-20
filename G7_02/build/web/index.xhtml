@@ -3,33 +3,112 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <title>Facelet Title</title>
+        <title>通訊錄表單</title>
+        <style>
+            body {
+                font-family: "Segoe UI", Arial, sans-serif;
+                background-color: #f4f6f8;
+                margin: 40px;
+                display: flex;
+                justify-content: center;
+            }
+
+            .form-container {
+                background-color: #ffffff;
+                padding: 30px 40px;
+                border-radius: 12px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                width: 450px;
+            }
+
+            h2 {
+                text-align: center;
+                color: #2c3e50;
+                margin-bottom: 20px;
+            }
+
+            .grid-label {
+                text-align: right;
+                padding-right: 10px;
+                font-weight: bold;
+                color: #34495e;
+            }
+
+            input[type="text"] {
+                width: 100%;
+                padding: 8px 12px;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+                box-sizing: border-box;
+                font-size: 14px;
+            }
+
+            .btn {
+                padding: 10px 18px;
+                background-color: #1976d2;
+                color: #fff;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 14px;
+                margin-top: 10px;
+                transition: background-color 0.3s;
+            }
+
+            .btn:hover {
+                background-color: #125aa0;
+            }
+
+            .output {
+                color: #2e7d32;
+                margin-top: 10px;
+                font-weight: bold;
+            }
+
+            .message-label {
+                margin-top: 20px;
+                font-style: italic;
+                color: #555;
+            }
+        </style>
     </h:head>
+
     <h:body>
-        <h:form>
-            <h:panelGrid columns="2"><h:outputText value="姓"/>
-                <h:inputText id="lastname" value="#{Bean.lastname}"/>
+        <div class="form-container">
+            <h2>G7_02 通訊錄管理</h2>
+            <h:form>
+                <h:panelGrid columns="2" cellpadding="8" style="width:100%;">
+                    <h:outputText value="姓" styleClass="grid-label"/>
+                    <h:inputText id="lastname" value="#{Bean.lastname}" required="true" />
 
-                <h:outputText value="名"/>
-                <h:inputText id="first" value="#{Bean.firstname}"/>
-                
-                <h:outputText value="Email"/>
-                <h:inputText id="email" value="#{Bean.email}"/>
-                
-                <h:outputText value="電話"/>
-                <h:inputText id="phonenumber" value="#{Bean.phonenumber}"/>
-                
-                <h:commandButton value="新增" action="#{Bean.addBook}"/>
-                <br></br>
-                <h:outputText value="#{Bean.message}"/>
-                <br></br>
-                <h:outputText value="編號"/>
-                <h:inputText id="addressid" value="#{Bean.addressid}" />
-                <h:commandButton value="更新" action="#{Bean.addressbook}"/>
-            </h:panelGrid>
-        </h:form>
+                    <h:outputText value="名" styleClass="grid-label"/>
+                    <h:inputText id="first" value="#{Bean.firstname}" required="true"/>
 
-        <h:outputText value="#{Bean.message1}"/>
-        <h:outputText value="#{Bean.message2}"/>
+                    <h:outputText value="Email" styleClass="grid-label"/>
+                    <h:inputText id="email" value="#{Bean.email}" required="true"/>
+
+                    <h:outputText value="電話" styleClass="grid-label"/>
+                    <h:inputText id="phonenumber" value="#{Bean.phonenumber}" required="true"/>
+
+                    <h:outputText />
+                    <h:commandButton value="新增" action="#{Bean.addBook}" styleClass="btn" />
+
+                    <h:outputText styleClass="message-label" value="#{Bean.message}"/>
+                </h:panelGrid>
+            </h:form>
+            <h:form>
+                    <h:outputText value="Address Id" styleClass="grid-label" />
+                    <h:inputText id="addressid" value="#{Bean.addressid}" />
+
+                    <h:outputText />
+                    <h:commandButton value="查詢" action="#{Bean.addressbook}" styleClass="btn" />
+                
+            </h:form>
+            <h:panelGroup>
+                <h:outputText value="#{Bean.message1}" styleClass="output"/>
+                <br/>
+                <h:outputText value="#{Bean.message2}" styleClass="output"/>
+            </h:panelGroup>
+        </div>
     </h:body>
 </html>
