@@ -6,7 +6,7 @@ package Rest;
 
 import java.util.Set;
 import javax.ws.rs.core.Application;
-
+import org.glassfish.jersey.jackson.JacksonFeature;
 /**
  *
  * @author User
@@ -18,17 +18,12 @@ public class ApplicationConfig extends Application {
     public Set<Class<?>> getClasses() {
         Set<Class<?>> resources = new java.util.HashSet<>();
         addRestResourceClasses(resources);
+        // 註冊 Jackson JSON Provider
+        resources.add(JacksonFeature.class);
         return resources;
     }
 
-    /**
-     * Do not modify addRestResourceClasses() method.
-     * It is automatically populated with
-     * all resources defined in the project.
-     * If required, comment out calling this method in getClasses().
-     */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(Rest.GenericResource.class);
     }
-    
 }

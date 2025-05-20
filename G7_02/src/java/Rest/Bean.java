@@ -4,11 +4,13 @@ import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import Rest.Address;
+import java.net.MalformedURLException;
 
 @ManagedBean(name = "Bean")
 @RequestScoped
@@ -65,30 +67,30 @@ public class Bean {
         }
     }
     
-    public void addBook(){
+    public void addBook() throws IOException, MalformedURLException{
         try {
-            URL url;
-            url = new java.net.URL("http://localhost:8080/G7_02/webresources/generic");
+            URL url = new URL("http://localhost:8080/G7_02/webresources/generic/");
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setDoOutput(true); // 允許寫入
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json");
             conn.setRequestProperty("Accept", "application/json");
-
+            conn.setDoInput(true);
             Address addr = new Address(firstname, lastname, email, phonenumber);
             // 構造 JSON 字串
             String json = new Gson().toJson(addr);
             // 將 JSON 寫入輸出流
             try (OutputStream os = conn.getOutputStream()) {
-                os.write(json.getBytes("utf-8"));
+                os.write(json.getBytes());
+                os.flush();
             }
 
             if (conn.getResponseCode() != 200) {
                 throw new RuntimeException("HTTP 錯誤代碼: " + conn.getResponseCode());
             }
             
-            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             StringBuilder result = new StringBuilder();
             String output;
             while ((output = br.readLine()) != null) {

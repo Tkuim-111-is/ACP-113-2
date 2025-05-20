@@ -110,10 +110,10 @@ public class GenericResource {
                     "insert into ADDRESSESEMAIL(firstname, lastname, email, phonenumber) values(?,?,?,?)",
                     PreparedStatement.RETURN_GENERATED_KEYS
             );
-            ps.setString(0, input.firstname);
-            ps.setString(1, input.lastname);
-            ps.setString(2, input.email);
-            ps.setString(3, input.phonenumber);
+            ps.setString(1, input.firstname);
+            ps.setString(2, input.lastname);
+            ps.setString(3, input.email);
+            ps.setString(4, input.phonenumber);
             
             int result = ps.executeUpdate();
             int addressid = 0;
