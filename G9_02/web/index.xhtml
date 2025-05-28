@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>101 跳箱馬拉松 G9_02</title>
+
+        <style>
+            body {
+                font-family: "Segoe UI", sans-serif;
+                background-color: #f0f2f5;
+                margin: 40px;
+            }
+
+            .container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .image-container {
+                position: relative;
+                width: 404px;
+                height: 178px;
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            .dot {
+                position: absolute;
+                width: 30px;
+                height: 30px;
+                background-color: rgb(0, 136, 255);
+                border-radius: 50%;
+                box-shadow: 0 0 8px rgba(0, 136, 255, 0.6);
+            }
+
+            .form-box {
+                background-color: white;
+                padding: 20px;
+                border-radius: 12px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                width: 420px;
+            }
+
+            .form-box h:commandButton {
+                margin: 5px;
+            }
+
+            .feedback-img {
+                height: 300px;
+                transition: opacity 0.3s ease-in-out;
+            }
+
+            .message {
+                color: red;
+                font-weight: bold;
+                margin-top: 10px;
+            }
+            @keyframes popIn {
+                0% {
+                    transform: scale(0.2);
+                    opacity: 0;
+                }
+                60% {
+                    transform: scale(1.2);
+                    opacity: 1;
+                }
+                100% {
+                    transform: scale(1);
+                }
+            }
+
+            .feedback-img {
+                height: 300px;
+                animation: popIn 0.4s ease-out;
+                transform-origin: center;
+            }
+
+        </style>
+    </h:head>
+    <h:body>
+        <script>
+            function playErrorSound() {
+                var audio = new Audio('/G9_02/web/resources/sounds/boing.mp3');
+                audio.play();
+            }
+        </script>
+        
+        <div class="container">
+            <!-- 背景圖片與圓點 -->
+            <div class="image-container">
+                <img src="./resources/imgs/boxes.png" style="width: 404px; height: 178px;" />
+                <ui:repeat value="#{Bean.dotVisible}" var="visible" varStatus="loop">
+                    <h:panelGroup rendered="#{visible}">
+                        <div class="dot" style="#{Bean.getDotStyle(loop.index)}" />
+                    </h:panelGroup>
+                </ui:repeat>
+            </div>
+
+            <!-- 表單與按鈕 -->
+            <div class="form-box">
+                <h:form>
+                    <h:selectOneRadio value="#{Bean.selectedOption}" layout="lineDirection">
+                        <f:selectItem itemLabel="直跳" itemValue="A" />
+                        <f:selectItem itemLabel="斜跳" itemValue="B" />
+                        <f:selectItem itemLabel="由小到大" itemValue="C" />
+                    </h:selectOneRadio>
+
+                    <h:commandButton value="選擇模式" action="#{Bean.submit}" />
+                    <h:commandButton value="錯誤"
+                        action="#{Bean.next}"
+                        onclick="playErrorSound(); return true;"/>
+                    <h:commandButton value="正確" action="#{Bean.correct}" />
+
+                    <br />
+                    <h:outputText value="#{Bean.message}" styleClass="message" />
+                </h:form>
+            </div>
+
+            <!-- 回饋圖片 -->
+            <h:graphicImage value="#{Bean.imagePath}" 
+                rendered="#{not empty Bean.imagePath}" 
+                styleClass="feedback-img" />
+        </div>
+    </h:body>
+</html>
