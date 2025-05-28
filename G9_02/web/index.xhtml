@@ -6,6 +6,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>101 跳箱馬拉松 G9_02</title>
+
         <style>
             body {
                 font-family: "Segoe UI", sans-serif;
@@ -83,6 +84,13 @@
         </style>
     </h:head>
     <h:body>
+        <script>
+            function playErrorSound() {
+                var audio = new Audio('/G9_02/web/resources/sounds/boing.mp3');
+                audio.play();
+            }
+        </script>
+        
         <div class="container">
             <!-- 背景圖片與圓點 -->
             <div class="image-container">
@@ -104,7 +112,9 @@
                     </h:selectOneRadio>
 
                     <h:commandButton value="選擇模式" action="#{Bean.submit}" />
-                    <h:commandButton value="錯誤" action="#{Bean.next}" />
+                    <h:commandButton value="錯誤"
+                        action="#{Bean.next}"
+                        onclick="playErrorSound(); return true;"/>
                     <h:commandButton value="正確" action="#{Bean.correct}" />
 
                     <br />
