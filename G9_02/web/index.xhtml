@@ -60,13 +60,33 @@
                 font-weight: bold;
                 margin-top: 10px;
             }
+            @keyframes popIn {
+                0% {
+                    transform: scale(0.2);
+                    opacity: 0;
+                }
+                60% {
+                    transform: scale(1.2);
+                    opacity: 1;
+                }
+                100% {
+                    transform: scale(1);
+                }
+            }
+
+            .feedback-img {
+                height: 300px;
+                animation: popIn 0.4s ease-out;
+                transform-origin: center;
+            }
+
         </style>
     </h:head>
     <h:body>
         <div class="container">
             <!-- 背景圖片與圓點 -->
             <div class="image-container">
-                <img src="./img/boxes.png" style="width: 404px; height: 178px;" />
+                <img src="./resources/imgs/boxes.png" style="width: 404px; height: 178px;" />
                 <ui:repeat value="#{Bean.dotVisible}" var="visible" varStatus="loop">
                     <h:panelGroup rendered="#{visible}">
                         <div class="dot" style="#{Bean.getDotStyle(loop.index)}" />
@@ -93,7 +113,9 @@
             </div>
 
             <!-- 回饋圖片 -->
-            <h:graphicImage value="#{Bean.imagePath}" rendered="#{not empty Bean.imagePath}" styleClass="feedback-img" />
+            <h:graphicImage value="#{Bean.imagePath}" 
+                rendered="#{not empty Bean.imagePath}" 
+                styleClass="feedback-img" />
         </div>
     </h:body>
 </html>

@@ -74,7 +74,7 @@ public class Bean implements Serializable {
         if (currentIndex + 1 < choose_combinations.length) {
             currentIndex++;
             updateDots(); // 顯示下一組
-            imagePath = "./img/wrong.png";  // 顯示錯誤圖片
+            imagePath = "resources/imgs/wrong.png";  // 顯示錯誤圖片
         } else {
             message = "已無更多組合";
         }
@@ -82,7 +82,7 @@ public class Bean implements Serializable {
 
     public void correct() {
         currentIndex = 0;
-        imagePath = "./img/correct.png";  // 顯示正確圖片
+        imagePath = "resources/imgs/correct.png";  // 顯示正確圖片
     }
 
     private void updateDots() {
