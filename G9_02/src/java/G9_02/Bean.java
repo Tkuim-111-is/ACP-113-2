@@ -81,8 +81,17 @@ public class Bean implements Serializable {
     }
 
     public void correct() {
+        // 清空所有狀態
         currentIndex = 0;
+        message = "";
         imagePath = "resources/imgs/correct.png";  // 顯示正確圖片
+        // 清空圓點
+        if (dotVisible != null) {
+            for (int i = 0; i < dotVisible.size(); i++) {
+                dotVisible.set(i, false);
+            }
+        }
+        currentPosition.clear();
     }
 
     private void updateDots() {
@@ -120,19 +129,40 @@ public class Bean implements Serializable {
     }
 
     public String getDotStyle(int index) {
-        int[][] positions = {
-            // 1、2
-            {15, 20}, {115, 20},
-            // 3、4、5
-            {15, 80}, {115, 80}, {215, 80},
-            // 6、7、8、9
-            {15, 140}, {115, 140}, {215, 140}, {320, 140}
+        String[] colors = {
+            "background-color: rgb(0, 136, 255);",   // 藍
+            "background-color: rgb(255, 200, 0);",   // 黃
+            "background-color: rgb(0, 200, 120);",   // 綠
+            "background-color: rgb(255, 80, 80);"    // 紅
         };
-        if (index >= 0 && index < positions.length) {
-            return String.format("position: absolute; left: %dpx; top: %dpx; width: 30px; height: 30px; background-color: rgb(0, 136, 255); border-radius: 50%%;", positions[index][0], positions[index][1]);
-        } else {
-            return "";
+        // 找出這個 index 是否在 currentPosition 裡，並取得其順序
+        int colorIdx = -1;
+        for (int i = 0; i < currentPosition.size(); i++) {
+            if (currentPosition.get(i) == index + 1) { // index+1 是實際的點號
+                colorIdx = i;
+                break;
+            }
         }
+        if (colorIdx == -1) {
+            return getDotPositionStyle(index);
+        }
+        String baseStyle = "position: absolute; width: 30px; height: 30px; border-radius: 50%; box-shadow: 0 0 8px rgba(0,0,0,0.2);";
+        return baseStyle + colors[colorIdx % colors.length] + getDotPositionStyle(index);
+    }
+
+    private String getDotPositionStyle(int index) {
+        String[] positions = {
+            "left: 15px; top: 20px;",   // 1
+            "left: 115px; top: 20px;",  // 2
+            "left: 15px; top: 80px;",   // 3
+            "left: 115px; top: 80px;",  // 4
+            "left: 215px; top: 80px;",  // 5
+            "left: 15px; top: 140px;",  // 6
+            "left: 115px; top: 140px;", // 7
+            "left: 215px; top: 140px;", // 8
+            "left: 320px; top: 140px;"  // 9
+        };
+        return positions[index];
     }
 
     public void setSelectedOption(String selectedOption) {
